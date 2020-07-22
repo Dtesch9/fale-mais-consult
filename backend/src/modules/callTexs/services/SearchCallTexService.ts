@@ -1,39 +1,45 @@
-import AppError from '@shared/error/AppError';
-import CallTexsRepository from '../repositories/CallTexsRepository';
+import { injectable, inject } from 'tsyringe';
 
-interface Request {
+import AppError from '@shared/error/AppError';
+import ICallTexsRepository from '../repositories/ICallTexsRepository';
+
+interface IRequest {
   origin_call: string;
   destination_call: string;
   time: number;
   plan: number;
 }
 
-interface PriceComparation {
+interface IPriceComparation {
   plan: number;
   plan_price: number;
   normal_price: number;
 }
 
-interface ConsultTable {
+interface IConsultTable {
   [key: string]: number;
 }
 
+@injectable()
 class SearchCallTexService {
-  private callTexsRepository: CallTexsRepository;
+  constructor(
+    @inject('CallTexsRepository')
+    private callTexsRepository: ICallTexsRepository,
+  ) {}
 
-  constructor(callTexsRepository: CallTexsRepository) {
-    this.callTexsRepository = callTexsRepository;
-  }
-
-  public execute({
+  public async execute({
     origin_call,
     destination_call,
     time,
     plan,
-  }: Request): PriceComparation {
+  }: IRequest): Promise<IPriceComparation> {
     const parsedKey = `${origin_call}${destination_call}`;
 
-    const callTexs = this.callTexsRepository.all();
+    const callTexs = await this.callTexsRepository.all();
+
+    if (callTexs.length < 1) {
+      throw new AppError('No plan registered');
+    }
 
     const consultTable = callTexs.reduce((consultRow, callTex) => {
       const { origin, destination, value } = callTex;
@@ -45,7 +51,7 @@ class SearchCallTexService {
       });
 
       return consultRow;
-    }, {} as ConsultTable);
+    }, {} as IConsultTable);
 
     const pricePerMinute = consultTable[parsedKey];
 
