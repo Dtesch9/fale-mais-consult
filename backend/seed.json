@@ -1,38 +1,50 @@
 [
   {
-    "id": "uuid-1",
+    "id": "5f18b61355a8e7feb2703d3f",
     "origin": "011",
     "destination": "016",
-    "value": 1.9
+    "value": 1.9,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   },
   {
     "id": "uuid-2",
     "origin": "016",
     "destination": "011",
-    "value": 2.9
+    "value": 2.9,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   },
   {
     "id": "uuid-3",
     "origin": "011",
     "destination": "017",
-    "value": 1.7
+    "value": 1.7,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   },
   {
     "id": "uuid-4",
     "origin": "017",
     "destination": "011",
-    "value": 2.7
+    "value": 2.7,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   },
   {
     "id": "uuid-5",
     "origin": "011",
     "destination": "018",
-    "value": 0.9
+    "value": 0.9,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   },
   {
     "id": "uuid-6",
     "origin": "018",
     "destination": "011",
-    "value": 1.9
+    "value": 1.9,
+    "created_at": "07-22-2020",
+    "updated_at": "07-22-2020"
   }
 ]

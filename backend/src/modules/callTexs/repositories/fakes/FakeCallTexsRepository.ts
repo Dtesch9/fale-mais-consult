@@ -1,8 +1,9 @@
-import { uuid } from 'uuidv4';
+import { ObjectID } from 'typeorm';
 
+import filterSeed from '@shared/utils/filterSeed';
 import CallText from '../../infra/typeorm/schemas/CallTex';
 
-import initialValue from '../../../../../seed.json';
+import data from '../../../../../seed.json';
 
 interface CreateCallTexDTO {
   origin: string;
@@ -16,6 +17,8 @@ class CallTextsRepository {
   private callTexts: CallText[];
 
   constructor() {
+    const initialValue = filterSeed(data);
+
     this.callTexts = initialValue;
   }
 
@@ -27,7 +30,7 @@ class CallTextsRepository {
     const callText = new CallText();
 
     Object.assign(callText, {
-      id: uuid(),
+      id: new ObjectID(),
       origin,
       destination,
       value,

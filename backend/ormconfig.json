@@ -3,7 +3,7 @@
   "type": "mongodb",
   "host": "localhost",
   "port": 27017,
-  "database": "call_taxs",
+  "database": "fale_mais",
   "useUnifiedTopology": true,
   "entities": [
     "./src/modules/**/infra/typeorm/schemas/*.ts"
