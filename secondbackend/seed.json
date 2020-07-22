@@ -1,0 +1,38 @@
+[
+  {
+    "id": "uuid-1",
+    "origin": "011",
+    "destination": "016",
+    "value": 1.9
+  },
+  {
+    "id": "uuid-2",
+    "origin": "016",
+    "destination": "011",
+    "value": 2.9
+  },
+  {
+    "id": "uuid-3",
+    "origin": "011",
+    "destination": "017",
+    "value": 1.7
+  },
+  {
+    "id": "uuid-4",
+    "origin": "017",
+    "destination": "011",
+    "value": 2.7
+  },
+  {
+    "id": "uuid-5",
+    "origin": "011",
+    "destination": "018",
+    "value": 0.9
+  },
+  {
+    "id": "uuid-6",
+    "origin": "018",
+    "destination": "011",
+    "value": 1.9
+  }
+]
