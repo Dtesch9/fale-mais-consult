@@ -1,18 +1,18 @@
-import CallText from '@modules/callTexs/infra/typeorm/entities/CallTex';
+import { MongoRepository, getMongoRepository } from 'typeorm';
+
+import CallText from '@modules/callTexs/infra/typeorm/schemas/CallTex';
 import ICallTexsRepository from '../../../repositories/ICallTexsRepository';
 import CreateCallTexDTO from '../../../dtos/CreateCallTexDTO';
 
-import initialValue from '../../../../../../seed.json';
-
 class CallTextsRepository implements ICallTexsRepository {
-  private callTexts: CallText[];
+  private ormRepository: MongoRepository<CallText>;
 
   constructor() {
-    this.callTexts = initialValue;
+    this.ormRepository = getMongoRepository(CallText);
   }
 
   public async all(): Promise<CallText[]> {
-    return this.callTexts;
+    return this.ormRepository.find();
   }
 
   public async create({
@@ -20,9 +20,13 @@ class CallTextsRepository implements ICallTexsRepository {
     destination,
     value,
   }: CreateCallTexDTO): Promise<CallText> {
-    const callText = new CallText({ origin, destination, value });
+    const callText = this.ormRepository.create({
+      origin,
+      destination,
+      value,
+    });
 
-    this.callTexts.push(callText);
+    await this.ormRepository.save(callText);
 
     return callText;
   }

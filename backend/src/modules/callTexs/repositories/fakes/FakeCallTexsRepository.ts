@@ -1,4 +1,6 @@
-import CallText from '../../infra/typeorm/entities/CallTex';
+import { uuid } from 'uuidv4';
+
+import CallText from '../../infra/typeorm/schemas/CallTex';
 
 import initialValue from '../../../../../seed.json';
 
@@ -22,7 +24,14 @@ class CallTextsRepository {
   }
 
   public create({ origin, destination, value }: CreateCallTexDTO): CallText {
-    const callText = new CallText({ origin, destination, value });
+    const callText = new CallText();
+
+    Object.assign(callText, {
+      id: uuid(),
+      origin,
+      destination,
+      value,
+    });
 
     this.callTexts.push(callText);
 
