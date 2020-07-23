@@ -37,8 +37,12 @@ class SearchCallTexService {
 
     const callTexs = await this.callTexsRepository.all();
 
-    if (callTexs.length < 1) {
-      throw new AppError('No plan registered');
+    const whiteListOfPlans = [30, 60, 120];
+
+    const planExists = whiteListOfPlans.indexOf(plan);
+
+    if (planExists < 0) {
+      throw new AppError('Plan not found', 404);
     }
 
     const consultTable = callTexs.reduce((consultRow, callTex) => {
@@ -56,7 +60,7 @@ class SearchCallTexService {
     const pricePerMinute = consultTable[parsedKey];
 
     if (!pricePerMinute) {
-      throw new AppError('Plan not found', 404);
+      throw new AppError('Origin/Destination not found', 404);
     }
 
     if (time <= plan) {

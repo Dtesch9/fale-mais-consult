@@ -1,4 +1,4 @@
-import { ObjectID } from 'typeorm';
+import { ObjectID } from 'mongodb';
 
 import filterSeed from '@shared/utils/filterSeed';
 import CallText from '../../infra/typeorm/schemas/CallTex';
@@ -22,11 +22,15 @@ class CallTextsRepository {
     this.callTexts = initialValue;
   }
 
-  public all(): CallText[] {
+  public async all(): Promise<CallText[]> {
     return this.callTexts;
   }
 
-  public create({ origin, destination, value }: CreateCallTexDTO): CallText {
+  public async create({
+    origin,
+    destination,
+    value,
+  }: CreateCallTexDTO): Promise<CallText> {
     const callText = new CallText();
 
     Object.assign(callText, {
