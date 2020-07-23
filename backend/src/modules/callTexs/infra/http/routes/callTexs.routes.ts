@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import CallTexsController from '../controllers/CallTexsController';
-import consultsRouteValidation from '../validations/consults';
+import consultsRouteValidation from '../validations/consultsRoute';
 
 const callTexsRouter = Router();
 const callTexsController = new CallTexsController();
