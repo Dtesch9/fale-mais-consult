@@ -1,9 +1,9 @@
-import { Connection, getConnection, getRepository } from 'typeorm';
+import { Connection, getConnection, getMongoRepository } from 'typeorm';
 
-import createConnection from './src/shared/infra/typeorm';
-import CallTex from './src/modules/callTexs/infra/typeorm/schemas/CallTex';
+import createConnection from '@shared/infra/typeorm';
+import CallTex from '@modules/callTexs/infra/typeorm/schemas/CallTex';
 
-import seed from './seed.json';
+import seed from '../../../../../../seed.json';
 
 const data = seed;
 
@@ -21,7 +21,7 @@ let connection: Connection;
 const run = async () => {
   connection = await createConnection();
 
-  const ormRepository = getRepository(CallTex);
+  const ormRepository = getMongoRepository(CallTex);
 
   await ormRepository.save(callTexs);
 
