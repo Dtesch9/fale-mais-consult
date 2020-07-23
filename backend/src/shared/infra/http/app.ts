@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Express, Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
+import { errors } from 'celebrate';
 
 import AppError from '@shared/error/AppError';
 import createConnection from '@shared/infra/typeorm';
@@ -29,6 +30,7 @@ class App {
 
   private routes() {
     this.app.use(routes);
+    this.app.use(errors());
   }
 
   private handlerExaption() {

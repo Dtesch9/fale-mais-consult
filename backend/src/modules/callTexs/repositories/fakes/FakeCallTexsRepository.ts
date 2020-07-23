@@ -1,6 +1,6 @@
 import { ObjectID } from 'mongodb';
 
-import filterSeed from '@shared/utils/filterSeed';
+import filterSeed from '@utils/filterSeed';
 import CallText from '../../infra/typeorm/schemas/CallTex';
 
 import data from '../../../../../seed.json';
