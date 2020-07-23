@@ -1,4 +1,5 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
+import { errors } from 'celebrate';
 
 import AppError from './error/AppError';
 
@@ -21,6 +22,7 @@ class App {
 
   private routes() {
     this.app.use(routes);
+    this.app.use(errors());
   }
 
   private handlerExaption() {

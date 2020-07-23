@@ -1,20 +1,20 @@
 import AppError from '../error/AppError';
 import CallTexsRepository from '../repositories/CallTexsRepository';
 
-interface Request {
+interface IRequest {
   origin_call: string;
   destination_call: string;
   time: number;
   plan: number;
 }
 
-interface PriceComparation {
+interface IPriceComparation {
   plan: number;
   plan_price: number;
   normal_price: number;
 }
 
-interface ConsultTable {
+interface IConsultTable {
   [key: string]: number;
 }
 
@@ -30,10 +30,18 @@ class SearchCallTexService {
     destination_call,
     time,
     plan,
-  }: Request): PriceComparation {
+  }: IRequest): IPriceComparation {
     const parsedKey = `${origin_call}${destination_call}`;
 
     const callTexs = this.callTexsRepository.all();
+
+    const whiteListOfPlans = [30, 60, 120];
+
+    const planExists = whiteListOfPlans.indexOf(plan);
+
+    if (planExists < 0) {
+      throw new AppError('Plan not found', 404);
+    }
 
     const consultTable = callTexs.reduce((consultRow, callTex) => {
       const { origin, destination, value } = callTex;
@@ -45,12 +53,12 @@ class SearchCallTexService {
       });
 
       return consultRow;
-    }, {} as ConsultTable);
+    }, {} as IConsultTable);
 
     const pricePerMinute = consultTable[parsedKey];
 
     if (!pricePerMinute) {
-      throw new AppError('Plan not found', 404);
+      throw new AppError('Origin/Destination not found', 404);
     }
 
     if (time <= plan) {
