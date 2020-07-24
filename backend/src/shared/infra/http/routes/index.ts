@@ -4,6 +4,6 @@ import callTexsRouter from '@modules/callTexs/infra/http/routes/callTexs.routes'
 
 const routes = Router();
 
-routes.use('/consults', callTexsRouter);
+routes.use('/call_texs', callTexsRouter);
 
 export default routes;
