@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import logo from '../../assets/logo.png';
 
@@ -15,6 +15,53 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 12px;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const apearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const apearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const fadeOutOpacity = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const borderColor = keyframes`
+  from {
+    border-color: #999;
+  }
+  to {
+    border-color: #ff4400;
+  }
 `;
 
 export const Logo = styled.img.attrs({
@@ -22,18 +69,24 @@ export const Logo = styled.img.attrs({
 })`
   width: 200px;
   height: 200px;
+
+  animation: ${fadeOutOpacity} 3s;
 `;
 
 export const OriginContainer = styled.section`
   display: flex;
   flex-direction: column;
   max-width: calc(min(424px, 100%));
+
+  animation: ${apearFromRight} 2s;
 `;
 
 export const DestinationContainer = styled.section`
   display: flex;
   flex-direction: column;
   max-width: calc(min(424px, 100%));
+
+  animation: ${apearFromLeft} 2s;
 `;
 
 export const PlanContainer = styled.section`
@@ -47,6 +100,8 @@ export const OriginText = styled.h1`
   margin-bottom: 20px;
   color: rgba(255, 255, 255, 0.4);
   font-size: 3vh;
+
+  animation: ${fadeOutOpacity} 7s;
 `;
 
 export const DestinationText = styled.h1`
@@ -54,6 +109,8 @@ export const DestinationText = styled.h1`
   color: rgba(255, 255, 255, 0.4);
   margin: 20px 0 20px;
   font-size: 3vh;
+
+  animation: ${fadeOutOpacity} 7s;
 `;
 
 export const PlanText = styled.h2`
@@ -61,6 +118,8 @@ export const PlanText = styled.h2`
   color: rgba(255, 255, 255, 0.4);
   margin: 20px 0 20px;
   font-size: 3vh;
+
+  animation: ${fadeOutOpacity} 3s;
 `;
 
 export const ButtonsList = styled.ul`
@@ -78,6 +137,8 @@ export const ButtonBox = styled.li`
   /* Border-selected color #ff9203 */
   border-radius: 4px;
   transition: all 500ms;
+
+  animation: ${borderColor} 3s;
 
   & + li {
     margin-left: 8px;
