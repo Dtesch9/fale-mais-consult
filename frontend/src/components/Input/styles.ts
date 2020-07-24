@@ -11,7 +11,7 @@ export const Container = styled.div<ContainerProps>`
   max-width: calc(min(424px, 100%));
   width: 45vh;
   height: 4.5vh;
-  border: 1px solid ${({ isFocused }) => (isFocused ? '#ff7000' : '#999')};
+  border: 2px solid ${({ isFocused }) => (isFocused ? '#ff7000' : '#999')};
   border-radius: 2px;
   transition: all 500ms;
 

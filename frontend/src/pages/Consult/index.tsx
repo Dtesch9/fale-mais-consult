@@ -1,9 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 
+import api from '../../services/api';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Loading from '../../components/Loading';
 
 import {
   Container,
@@ -27,15 +30,68 @@ interface FormData {
   time: string;
 }
 
+interface OriginData {
+  id: string;
+  origin: string;
+}
+
+interface DestinationData {
+  id: string;
+  destination: string;
+}
+
 const Consult: React.FC = () => {
-  const [selected, setSelected] = useState<SelectedProps>({});
+  const [loading, setLoading] = useState(false);
+  const [origins, setOrigins] = useState<OriginData[]>([]);
+  const [destinations, setDestinations] = useState<DestinationData[]>([]);
+
+  const [selectedPlan, setSelectedPlan] = useState<SelectedProps>({});
+  const [selectedOrigin, setSelectedOrigin] = useState<SelectedProps>({});
+  const [selectedDestination, setSelectedDestination] = useState<SelectedProps>(
+    {},
+  );
+
+  const plans = useMemo(() => {
+    return [30, 60, 120];
+  }, []);
+
+  useEffect(() => {
+    const loadData = async (): Promise<void> => {
+      setLoading(true);
+
+      try {
+        await Promise.all([
+          api.get<OriginData[]>('/origins').then(response => {
+            setOrigins(response.data);
+          }),
+          api.get<DestinationData[]>('/destinations').then(response => {
+            setDestinations(response.data);
+          }),
+        ]);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   const handleSubmitForm: SubmitHandler<FormData> = useCallback(data => {
     console.log(data);
   }, []);
 
-  const handleButtonClick = useCallback(() => {
-    console.log('click');
+  const handleOrigin = useCallback(id => {
+    setSelectedOrigin(prevState => ({ [id]: !prevState[id] }));
+  }, []);
+
+  const handleDestination = useCallback(id => {
+    setSelectedDestination(prevState => ({ [id]: !prevState[id] }));
+  }, []);
+
+  const handlePlan = useCallback(id => {
+    setSelectedPlan(prevState => ({ [id]: !prevState[id] }));
   }, []);
 
   return (
@@ -47,29 +103,13 @@ const Consult: React.FC = () => {
             <OriginText>Informe o DDD de origem</OriginText>
 
             <ButtonsList>
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  011
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  016
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  017
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  018
-                </button>
-              </ButtonBox>
+              {origins.map(({ id, origin }) => (
+                <ButtonBox selected={Number(selectedOrigin[id])}>
+                  <button type="button" onClick={() => handleOrigin(id)}>
+                    {origin}
+                  </button>
+                </ButtonBox>
+              ))}
             </ButtonsList>
           </OriginContainer>
 
@@ -77,29 +117,13 @@ const Consult: React.FC = () => {
             <DestinationText>Informe o DDD de destino</DestinationText>
 
             <ButtonsList>
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  011
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  016
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  017
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  018
-                </button>
-              </ButtonBox>
+              {destinations.map(({ id, destination }) => (
+                <ButtonBox selected={Number(selectedDestination[id])}>
+                  <button type="button" onClick={() => handleDestination(id)}>
+                    {destination}
+                  </button>
+                </ButtonBox>
+              ))}
             </ButtonsList>
           </DestinationContainer>
 
@@ -107,23 +131,13 @@ const Consult: React.FC = () => {
             <PlanText>Informe seu Plano FaleMais</PlanText>
 
             <ButtonsList>
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  30
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  60
-                </button>
-              </ButtonBox>
-
-              <ButtonBox>
-                <button type="button" onClick={handleButtonClick}>
-                  120
-                </button>
-              </ButtonBox>
+              {plans.map((plan, index) => (
+                <ButtonBox selected={Number(selectedPlan[index])}>
+                  <button type="button" onClick={() => handlePlan(index)}>
+                    {plan}
+                  </button>
+                </ButtonBox>
+              ))}
             </ButtonsList>
           </PlanContainer>
 

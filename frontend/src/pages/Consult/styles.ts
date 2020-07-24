@@ -1,6 +1,10 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 import logo from '../../assets/logo.png';
+
+interface BoxButtonProps {
+  selected: number;
+}
 
 export const Container = styled.div`
   height: 100vh;
@@ -127,14 +131,18 @@ export const ButtonsList = styled.ul`
   justify-content: center;
 `;
 
-export const ButtonBox = styled.li`
+export const ButtonBox = styled.li<BoxButtonProps>`
   width: calc(min(11vh, 200px));
   height: calc(min(12vh, 200px));
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid #ff4400;
-  /* Border-selected color #ff9203 */
+  ${({ selected }) =>
+    selected &&
+    css`
+      border-color: #ff9000;
+    `}
   border-radius: 4px;
   transition: all 500ms;
 
@@ -158,5 +166,12 @@ export const ButtonBox = styled.li`
     width: 100%;
     height: 100%;
     transition: all 100ms;
+
+    ${({ selected }) =>
+      selected &&
+      css`
+        color: #ff4400;
+        border-color: #ff9000;
+      `}
   }
 `;
