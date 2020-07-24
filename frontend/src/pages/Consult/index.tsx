@@ -96,55 +96,59 @@ const Consult: React.FC = () => {
 
   return (
     <Container>
-      <Wrapper>
-        <Logo />
-        <Form onSubmit={handleSubmitForm}>
-          <OriginContainer>
-            <OriginText>Informe o DDD de origem</OriginText>
+      {loading ? (
+        <Loading size={120} color="#ff4400" />
+      ) : (
+        <Wrapper>
+          <Logo />
+          <Form onSubmit={handleSubmitForm}>
+            <OriginContainer>
+              <OriginText>Informe o DDD de origem</OriginText>
 
-            <ButtonsList>
-              {origins.map(({ id, origin }) => (
-                <ButtonBox selected={Number(selectedOrigin[id])}>
-                  <button type="button" onClick={() => handleOrigin(id)}>
-                    {origin}
-                  </button>
-                </ButtonBox>
-              ))}
-            </ButtonsList>
-          </OriginContainer>
+              <ButtonsList>
+                {origins.map(({ id, origin }) => (
+                  <ButtonBox selected={Number(selectedOrigin[id])}>
+                    <button type="button" onClick={() => handleOrigin(id)}>
+                      {origin}
+                    </button>
+                  </ButtonBox>
+                ))}
+              </ButtonsList>
+            </OriginContainer>
 
-          <DestinationContainer>
-            <DestinationText>Informe o DDD de destino</DestinationText>
+            <DestinationContainer>
+              <DestinationText>Informe o DDD de destino</DestinationText>
 
-            <ButtonsList>
-              {destinations.map(({ id, destination }) => (
-                <ButtonBox selected={Number(selectedDestination[id])}>
-                  <button type="button" onClick={() => handleDestination(id)}>
-                    {destination}
-                  </button>
-                </ButtonBox>
-              ))}
-            </ButtonsList>
-          </DestinationContainer>
+              <ButtonsList>
+                {destinations.map(({ id, destination }) => (
+                  <ButtonBox selected={Number(selectedDestination[id])}>
+                    <button type="button" onClick={() => handleDestination(id)}>
+                      {destination}
+                    </button>
+                  </ButtonBox>
+                ))}
+              </ButtonsList>
+            </DestinationContainer>
 
-          <PlanContainer>
-            <PlanText>Informe seu Plano FaleMais</PlanText>
+            <PlanContainer>
+              <PlanText>Informe seu Plano FaleMais</PlanText>
 
-            <ButtonsList>
-              {plans.map((plan, index) => (
-                <ButtonBox selected={Number(selectedPlan[index])}>
-                  <button type="button" onClick={() => handlePlan(index)}>
-                    {plan}
-                  </button>
-                </ButtonBox>
-              ))}
-            </ButtonsList>
-          </PlanContainer>
+              <ButtonsList>
+                {plans.map((plan, index) => (
+                  <ButtonBox selected={Number(selectedPlan[index])}>
+                    <button type="button" onClick={() => handlePlan(index)}>
+                      {plan}
+                    </button>
+                  </ButtonBox>
+                ))}
+              </ButtonsList>
+            </PlanContainer>
 
-          <Input name="time" placeholder="Tempo em minutos ex: 30" />
-          <Button>Consultar</Button>
-        </Form>
-      </Wrapper>
+            <Input name="time" placeholder="Tempo em minutos ex: 30" />
+            <Button>Consultar</Button>
+          </Form>
+        </Wrapper>
+      )}
     </Container>
   );
 };
