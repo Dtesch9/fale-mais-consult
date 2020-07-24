@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Express, Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 import { errors } from 'celebrate';
 
 import AppError from '@shared/error/AppError';
@@ -26,6 +27,7 @@ class App {
 
   private middlewares() {
     this.app.use(express.json());
+    this.app.use(cors());
   }
 
   private routes() {
