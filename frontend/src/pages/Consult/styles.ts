@@ -104,7 +104,7 @@ export const OriginText = styled.h1`
   color: rgba(255, 255, 255, 0.4);
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 6s;
+  animation: ${fadeOutOpacity} 4s;
 `;
 
 export const DestinationText = styled.h1`
@@ -113,7 +113,7 @@ export const DestinationText = styled.h1`
   margin: 20px 0 20px;
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 6s;
+  animation: ${fadeOutOpacity} 4s;
 `;
 
 export const PlanText = styled.h2`
