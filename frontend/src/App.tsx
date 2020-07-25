@@ -4,12 +4,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import GlobalStyles from './styles/global';
 
-import Consult from './pages/Consult';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
     <>
-      <Consult />
+      <Routes />
       <GlobalStyles />
       <ToastContainer autoClose={3000} />
     </>

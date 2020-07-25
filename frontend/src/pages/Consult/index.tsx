@@ -8,6 +8,7 @@ import React, {
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -47,8 +48,15 @@ interface DestinationData {
   destination: string;
 }
 
+interface ResultData {
+  normal_price: number;
+  plan: number;
+  plan_price: number;
+}
+
 const Consult: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
   const [loading, setLoading] = useState(false);
   const [origins, setOrigins] = useState<OriginData[]>([]);
@@ -118,7 +126,7 @@ const Consult: React.FC = () => {
           return;
         }
 
-        const results = await api.get('/call_texs', {
+        const response = await api.get<ResultData>('/call_texs', {
           params: {
             origin: originForm,
             destination: destinationForm,
@@ -127,12 +135,14 @@ const Consult: React.FC = () => {
           },
         });
 
+        history.push({ pathname: '/result', state: { ...response.data } });
+
         toast('Consulta realizada com sucesso', {
           type: 'success',
           progressStyle: { backgroundColor: '#88dd88' },
         });
       } catch (err) {
-        if (err.response.status === 500) {
+        if (err.response?.status === 500) {
           toast('Erro inesperado, tente novamente mais tarde', {
             type: 'error',
             pauseOnHover: true,
@@ -151,7 +161,7 @@ const Consult: React.FC = () => {
         setSelectedPlan({});
       }
     },
-    [originForm, destinationForm, planForm],
+    [originForm, destinationForm, planForm, history],
   );
 
   const handleOrigin = useCallback((id, origin) => {
