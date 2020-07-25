@@ -81,7 +81,7 @@ export const OriginContainer = styled.section`
   flex-direction: column;
   max-width: calc(min(424px, 100%));
 
-  animation: ${apearFromRight} 2s;
+  animation: ${apearFromRight} 1.5s;
 `;
 
 export const DestinationContainer = styled.section`
@@ -89,7 +89,7 @@ export const DestinationContainer = styled.section`
   flex-direction: column;
   max-width: calc(min(424px, 100%));
 
-  animation: ${apearFromLeft} 2s;
+  animation: ${apearFromLeft} 1.5s;
 `;
 
 export const PlanContainer = styled.section`
@@ -104,7 +104,7 @@ export const OriginText = styled.h1`
   color: rgba(255, 255, 255, 0.4);
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 7s;
+  animation: ${fadeOutOpacity} 6s;
 `;
 
 export const DestinationText = styled.h1`
@@ -113,7 +113,7 @@ export const DestinationText = styled.h1`
   margin: 20px 0 20px;
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 7s;
+  animation: ${fadeOutOpacity} 6s;
 `;
 
 export const PlanText = styled.h2`
@@ -152,8 +152,16 @@ export const ButtonBox = styled.li<BoxButtonProps>`
   }
 
   &:hover {
-    border-right-color: #a10500;
-    border-bottom-color: #a10500;
+    ${({ selected }) =>
+      !selected
+        ? css`
+            border-right-color: #a10500;
+            border-bottom-color: #a10500;
+          `
+        : css`
+            border-left-color: #a10500;
+            border-top-color: #a10500;
+          `}
 
     button {
       color: #ff4400;
