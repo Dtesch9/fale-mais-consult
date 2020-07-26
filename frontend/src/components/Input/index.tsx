@@ -36,8 +36,12 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
   }, []);
 
   return (
-    <Container isFocused={Number(isFocused)} isFilled={Number(isFilled)}>
-      <FiClock />
+    <Container
+      data-testid="input-container"
+      isFocused={Number(isFocused)}
+      isFilled={Number(isFilled)}
+    >
+      <FiClock data-testid="input-icon" />
 
       <input
         ref={inputElementRef}

@@ -12,7 +12,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & Props;
 
 const Button: React.FC<ButtonProps> = ({ children, loading, ...rest }) => {
   return (
-    <Container disabled={loading} {...rest}>
+    <Container data-testid="button-container" disabled={loading} {...rest}>
       {loading ? <Loading size={24} color="#ff4400" /> : children}
     </Container>
   );
