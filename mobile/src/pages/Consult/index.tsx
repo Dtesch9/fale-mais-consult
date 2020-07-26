@@ -90,7 +90,7 @@ const Consult: React.FC = () => {
         setOrigins(originsResponse.data);
         setDestinations(destinationsResponse.data);
       } catch (err) {
-        Alert.alert('Erro inesperado', 'Tente novamente mais tarde');
+        Alert.alert('Erro inesperado!', 'Tente novamente mais tarde');
       } finally {
         setLoading(false);
       }
@@ -106,19 +106,19 @@ const Consult: React.FC = () => {
 
         formRef.current?.reset();
 
-        if (!originForm || !destinationForm || !planForm || !data.time) {
-          Alert.alert(
-            'Atenção!',
-            'Para realizar a consulta informe todos os campos',
-          );
-
-          return;
-        }
-
         const { time } = data;
 
         if (time <= 0) {
           Alert.alert('Atenção!', 'O tempo precisa ser maior do que 0');
+
+          return;
+        }
+
+        if (!originForm || !destinationForm || !planForm || !time) {
+          Alert.alert(
+            'Atenção!',
+            'Para realizar a consulta informe todos os campos',
+          );
 
           return;
         }
@@ -135,11 +135,11 @@ const Consult: React.FC = () => {
         navigate('Result', { ...response.data });
       } catch (err) {
         if (err.response?.status === 500) {
-          Alert.alert('Erro inesperado', 'Tente novamente mais tarde');
+          Alert.alert('Erro inesperado!', 'Tente novamente mais tarde');
         }
 
         Alert.alert(
-          'Erro no seu plano',
+          'Erro no seu plano!',
           'A FaleMais não tem planos para esta origem com este destino',
         );
       } finally {
