@@ -24,6 +24,6 @@ export const ButtonBorder = styled.View`
 
 export const ButtonText = styled.Text`
   font-family: 'RobotoSlab-light';
-  color: #fff;
+  color: rgba(255, 255, 255, 0.4);
   font-size: 18px;
 `;
