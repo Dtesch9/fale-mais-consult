@@ -10,8 +10,9 @@ import { useNavigation } from '@react-navigation/native';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 
-import { useLoading } from '../../hooks/loading';
 import api from '../../services/api';
+
+import Input from '../../components/Input';
 
 import {
   Container,
@@ -56,7 +57,6 @@ interface ResultData {
 const Consult: React.FC = () => {
   const { navigate } = useNavigation();
   const formRef = useRef<FormHandles>(null);
-  // const { setIsLoading, loading } = useLoading();
 
   const [loading, setLoading] = useState(false);
   const [origins, setOrigins] = useState<OriginData[]>([]);
@@ -164,24 +164,17 @@ const Consult: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <Container enabled behavior={undefined}>
       <Wrapper
         contentContainerStyle={{
           alignItems: 'center',
-          height: '100%',
         }}
         showsVerticalScrollIndicator={false}
       >
         <Logo />
 
         {loading ? (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
+          <View style={{ marginTop: '50%' }}>
             <ActivityIndicator size={70} color="#ff4400" />
           </View>
         ) : (
@@ -257,6 +250,8 @@ const Consult: React.FC = () => {
                   ))}
                 </ButtonsList>
               </PlanContainer>
+
+              <Input name="time" placeholder="Tempo em minutos ex: 30" />
             </Form>
           </>
         )}

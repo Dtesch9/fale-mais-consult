@@ -12,16 +12,17 @@ interface ButtonTextProps {
   selected: number;
 }
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.KeyboardAvoidingView`
   flex-direction: column;
   align-items: center;
 `;
 
-export const Wrapper = styled.ScrollView`
+export const Wrapper = styled.ScrollView.attrs({
+  keyboardShouldPersistTaps: 'handled',
+})`
   width: 95%;
-
   margin-bottom: 12px;
+  height: 100%;
 `;
 
 export const Logo = styled.Image.attrs({
@@ -67,6 +68,7 @@ export const DestinationText = styled.Text`
 
 export const PlanContainer = styled.View`
   ${originDestinationPlanContainerCss};
+  margin-bottom: 18px;
 `;
 
 export const PlanText = styled.Text`
