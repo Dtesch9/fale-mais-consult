@@ -11,7 +11,7 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ size, color }) => {
   return (
     <Container>
-      <FaSpinner size={size} color={color} />
+      <FaSpinner data-testid="spinner-icon" size={size} color={color} />
     </Container>
   );
 };
