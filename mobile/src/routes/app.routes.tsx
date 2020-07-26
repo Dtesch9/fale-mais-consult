@@ -16,7 +16,7 @@ const AppRoutes: React.FC = () => (
       headerTransparent: true,
     }}
   >
-    {/* <App.Screen name="Consult" component={Consult} /> */}
+    <App.Screen name="Consult" component={Consult} />
     <App.Screen
       name="Result"
       component={Result}
