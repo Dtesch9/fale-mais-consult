@@ -314,7 +314,7 @@ describe('Consult page', () => {
     await waitFor(() => {
       expect(alertSpy).toHaveBeenCalledWith(
         'Atenção!',
-        'O tempo precisa ser maior do que 0',
+        'Para realizar a consulta informe todos os campos',
       );
     });
   });

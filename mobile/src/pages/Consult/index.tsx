@@ -106,19 +106,19 @@ const Consult: React.FC = () => {
 
         formRef.current?.reset();
 
-        const { time } = data;
-
-        if (time <= 0) {
-          Alert.alert('Atenção!', 'O tempo precisa ser maior do que 0');
-
-          return;
-        }
-
-        if (!originForm || !destinationForm || !planForm || !time) {
+        if (!originForm || !destinationForm || !planForm || !data.time) {
           Alert.alert(
             'Atenção!',
             'Para realizar a consulta informe todos os campos',
           );
+
+          return;
+        }
+
+        const { time } = data;
+
+        if (time <= 0) {
+          Alert.alert('Atenção!', 'O tempo precisa ser maior do que 0');
 
           return;
         }
