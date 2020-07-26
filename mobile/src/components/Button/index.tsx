@@ -9,10 +9,14 @@ interface ButtonProps extends RectButtonProperties {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, loading, ...rest }) => (
-  <Container enabled={!loading} {...rest} data-testid="button-container">
+  <Container enabled={!loading} {...rest} testID="button-container">
     <ButtonBorder>
       {loading ? (
-        <ActivityIndicator size={36} color="#ff4400" />
+        <ActivityIndicator
+          testID="loading-component"
+          size={36}
+          color="#ff4400"
+        />
       ) : (
         <ButtonText>{children}</ButtonText>
       )}

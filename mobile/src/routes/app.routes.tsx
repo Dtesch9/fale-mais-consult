@@ -22,7 +22,10 @@ const AppRoutes: React.FC = () => (
       component={Result}
       options={({ navigation }) => ({
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            testID="back-button"
+            onPress={() => navigation.goBack()}
+          >
             <Icon name="chevron-left" size={30} color="#ff9000" />
           </TouchableOpacity>
         ),
