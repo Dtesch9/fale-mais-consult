@@ -23,20 +23,25 @@ const Result: React.FC = () => {
   const routeParams = useLocation<RouteParams>();
   const history = useHistory();
 
-  const { plan, normal_price, plan_price } = routeParams?.state;
-
-  const formattedPrices = useMemo(() => {
-    return {
-      normalPrice: formatCurrency(normal_price),
-      planPrice: formatCurrency(plan_price),
-    };
-  }, [normal_price, plan_price]);
-
   useEffect(() => {
     if (!routeParams.state) {
       history.push('/');
     }
   }, [routeParams, history]);
+
+  const formattedPrices = useMemo(() => {
+    if (!routeParams.state) {
+      return {};
+    }
+
+    const { plan, normal_price, plan_price } = routeParams.state;
+
+    return {
+      plan,
+      normalPrice: formatCurrency(normal_price),
+      planPrice: formatCurrency(plan_price),
+    };
+  }, [routeParams]);
 
   const handleGoBack = useCallback(() => {
     history.goBack();
@@ -45,7 +50,7 @@ const Result: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton onClick={handleGoBack} />
+        <BackButton data-testid="back-button" onClick={handleGoBack} />
         <Logo />
       </Header>
 
@@ -54,7 +59,7 @@ const Result: React.FC = () => {
           <Card>
             <h1>Plano escolhido</h1>
             <h2>FaleMais</h2>
-            <h3>{plan}</h3>
+            <h3>{formattedPrices.plan}</h3>
           </Card>
 
           <Card>
