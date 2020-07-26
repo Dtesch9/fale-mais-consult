@@ -81,7 +81,7 @@ export const OriginContainer = styled.section`
   flex-direction: column;
   max-width: calc(min(424px, 100%));
 
-  animation: ${apearFromRight} 1.5s;
+  animation: ${apearFromRight} 1s;
 `;
 
 export const DestinationContainer = styled.section`
@@ -89,7 +89,7 @@ export const DestinationContainer = styled.section`
   flex-direction: column;
   max-width: calc(min(424px, 100%));
 
-  animation: ${apearFromLeft} 1.5s;
+  animation: ${apearFromLeft} 1s;
 `;
 
 export const PlanContainer = styled.section`
@@ -104,7 +104,7 @@ export const OriginText = styled.h1`
   color: rgba(255, 255, 255, 0.4);
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 4s;
+  animation: ${fadeOutOpacity} 2s;
 `;
 
 export const DestinationText = styled.h1`
@@ -113,7 +113,7 @@ export const DestinationText = styled.h1`
   margin: 20px 0 20px;
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 4s;
+  animation: ${fadeOutOpacity} 2s;
 `;
 
 export const PlanText = styled.h2`
@@ -122,7 +122,7 @@ export const PlanText = styled.h2`
   margin: 20px 0 20px;
   font-size: 3vh;
 
-  animation: ${fadeOutOpacity} 3s;
+  animation: ${fadeOutOpacity} 2s;
 `;
 
 export const ButtonsList = styled.ul`
