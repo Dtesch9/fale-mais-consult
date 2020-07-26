@@ -46,7 +46,7 @@ export const BackButton = styled(FiArrowLeft)`
   left: calc(min(10vw, 300px));
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   @media (min-width: 1000px) {
@@ -97,7 +97,7 @@ export const Cards = styled.div`
 
 export const Card = styled.div`
   background: #312e38;
-  border: 1.2px solid #ff4400;
+  border: 1px solid #ff4400;
   border-radius: 4px;
   box-shadow: 4px 4px 4px -2px #ff4400;
   height: 250px;

@@ -81,16 +81,19 @@ const Consult: React.FC = () => {
       setLoading(true);
 
       try {
-        await Promise.all([
-          api.get<OriginData[]>('/origins').then(response => {
-            setOrigins(response.data);
-          }),
-          api.get<DestinationData[]>('/destinations').then(response => {
-            setDestinations(response.data);
-          }),
+        const [originsResponse, destinationsResponse] = await Promise.all([
+          api.get<OriginData[]>('/origins'),
+          api.get<DestinationData[]>('/destinations'),
         ]);
+
+        setOrigins(originsResponse.data);
+        setDestinations(destinationsResponse.data);
       } catch (err) {
-        console.log(err);
+        toast('Erro inesperado, tente novamente mais tarde', {
+          type: 'error',
+          pauseOnHover: true,
+          progressStyle: { backgroundColor: '#ff5544' },
+        });
       } finally {
         setLoading(false);
       }
@@ -104,7 +107,7 @@ const Consult: React.FC = () => {
       try {
         formRef.current?.reset();
 
-        if (!originForm || !destinationForm || !planForm) {
+        if (!originForm || !destinationForm || !planForm || !data.time) {
           toast('Para realizar a consulta informe todos os campos', {
             type: 'warning',
             pauseOnHover: true,
@@ -164,12 +167,12 @@ const Consult: React.FC = () => {
     [originForm, destinationForm, planForm, history],
   );
 
-  const handleOrigin = useCallback((id, origin) => {
+  const handleOrigin = useCallback((id: string, origin: string) => {
     setSelectedOrigin(prevState => ({ [id]: !prevState[id] }));
     setOriginForm(origin);
   }, []);
 
-  const handleDestination = useCallback((id, destination) => {
+  const handleDestination = useCallback((id: string, destination: string) => {
     setSelectedDestination(prevState => ({ [id]: !prevState[id] }));
     setDestinationForm(destination);
   }, []);
@@ -192,10 +195,14 @@ const Consult: React.FC = () => {
 
               <ButtonsList>
                 {origins.map(({ id, origin }) => (
-                  <ButtonBox selected={Number(selectedOrigin[id])}>
+                  <ButtonBox
+                    key={id}
+                    selected={Number(selectedOrigin[id]) || 0}
+                  >
                     <button
                       type="button"
                       onClick={() => handleOrigin(id, origin)}
+                      data-testid={`origin-button-${id}`}
                     >
                       {origin}
                     </button>
@@ -209,10 +216,14 @@ const Consult: React.FC = () => {
 
               <ButtonsList>
                 {destinations.map(({ id, destination }) => (
-                  <ButtonBox selected={Number(selectedDestination[id])}>
+                  <ButtonBox
+                    key={id}
+                    selected={Number(selectedDestination[id] || 0)}
+                  >
                     <button
                       type="button"
                       onClick={() => handleDestination(id, destination)}
+                      data-testid={`destination-button-${id}`}
                     >
                       {destination}
                     </button>
@@ -226,10 +237,14 @@ const Consult: React.FC = () => {
 
               <ButtonsList>
                 {plans.map((plan, index) => (
-                  <ButtonBox selected={Number(selectedPlan[index])}>
+                  <ButtonBox
+                    key={plan}
+                    selected={Number(selectedPlan[index]) || 0}
+                  >
                     <button
                       type="button"
                       onClick={() => handlePlan(index, plan)}
+                      data-testid={`plan-button-${plan}`}
                     >
                       {plan}
                     </button>

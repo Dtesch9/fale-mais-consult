@@ -59,7 +59,7 @@ const Result: React.FC = () => {
 
           <Card>
             <h1>Custo sem plano</h1>
-            <h2>018</h2>
+            <h2>FaleMais</h2>
             <h3>{formattedPrices.normalPrice}</h3>
           </Card>
           <Card>
