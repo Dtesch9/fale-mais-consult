@@ -5,16 +5,22 @@ import logo from '../../assets/logo.png';
 
 interface ButtonBoxProps {
   isFirst: number;
+  selected: number;
+}
+
+interface ButtonTextProps {
+  selected: number;
 }
 
 export const Container = styled.View`
+  flex: 1;
   flex-direction: column;
   align-items: center;
 `;
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.ScrollView`
   width: 95%;
-  align-items: center;
+
   margin-bottom: 12px;
 `;
 
@@ -81,7 +87,7 @@ export const ButtonBox = styled.View<ButtonBoxProps>`
   justify-content: flex-start;
   border-width: 2px;
   border-style: solid;
-  border-color: #ff4400;
+  border-color: ${({ selected }) => (selected ? '#ff9000' : '#ff4400')};
   border-radius: 4px;
 
   margin-left: ${({ isFirst }) => isFirst && '8px'};
@@ -97,6 +103,6 @@ export const CustomRectButton = styled(RectButton).attrs({
   border-radius: 4px;
 `;
 
-export const ButtonText = styled.Text`
-  color: #ff4400;
+export const ButtonText = styled.Text<ButtonTextProps>`
+  color: ${({ selected }) => (selected ? '#ff4400' : '#fff')};
 `;

@@ -1,22 +1,21 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import AppRoutes from './app.routes';
+import Consult from '../pages/Consult';
 
-import { useLoading } from '../hooks/loading';
+const App = createStackNavigator();
 
-const Routes: React.FC = () => {
-  const { loading } = useLoading();
+const AppRoutes: React.FC = () => (
+  <App.Navigator
+    screenOptions={{
+      headerShown: false,
+      cardStyle: { backgroundColor: '#312e38' },
+      gestureEnabled: true,
+      gestureDirection: 'horizontal',
+    }}
+  >
+    <App.Screen name="Consult" component={Consult} />
+  </App.Navigator>
+);
 
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size={70} color="#ff4400" />
-      </View>
-    );
-  }
-
-  return <AppRoutes />;
-};
-
-export default Routes;
+export default AppRoutes;
