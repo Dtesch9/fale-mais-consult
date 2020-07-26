@@ -1,21 +1,9 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import Consult from '../pages/Consult';
+import AppRoutes from './app.routes';
 
-const App = createStackNavigator();
+const Routes: React.FC = () => {
+  return <AppRoutes />;
+};
 
-const AppRoutes: React.FC = () => (
-  <App.Navigator
-    screenOptions={{
-      headerShown: false,
-      cardStyle: { backgroundColor: '#312e38' },
-      gestureEnabled: true,
-      gestureDirection: 'horizontal',
-    }}
-  >
-    <App.Screen name="Consult" component={Consult} />
-  </App.Navigator>
-);
-
-export default AppRoutes;
+export default Routes;
