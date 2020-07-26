@@ -10,7 +10,7 @@ describe('Button Component', () => {
     expect(getByText('Button test')).toBeTruthy();
   });
 
-  it('should be able to render button component', () => {
+  it('should be able to change style when loading', () => {
     const { getByTestId } = render(<Button loading>Button test</Button>);
 
     expect(getByTestId('button-container')).toHaveStyle('pointer-events: none');
