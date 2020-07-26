@@ -13,6 +13,7 @@ import { Form } from '@unform/mobile';
 import api from '../../services/api';
 
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import {
   Container,
@@ -101,6 +102,8 @@ const Consult: React.FC = () => {
   const handleSubmitForm: SubmitHandler<FormData> = useCallback(
     async (data: { time: number }) => {
       try {
+        setLoading(true);
+
         formRef.current?.reset();
 
         if (!originForm || !destinationForm || !planForm || !data.time) {
@@ -143,22 +146,26 @@ const Consult: React.FC = () => {
         setSelectedOrigin({});
         setSelectedDestination({});
         setSelectedPlan({});
+        setLoading(false);
       }
     },
     [originForm, destinationForm, planForm, navigate],
   );
 
-  const handleOrigin = useCallback((id: string, origin: string) => {
+  const handleOriginPress = useCallback((id: string, origin: string) => {
     setSelectedOrigin(prevState => ({ [id]: !prevState[id] }));
     setOriginForm(origin);
   }, []);
 
-  const handleDestination = useCallback((id: string, destination: string) => {
-    setSelectedDestination(prevState => ({ [id]: !prevState[id] }));
-    setDestinationForm(destination);
-  }, []);
+  const handleDestinationPress = useCallback(
+    (id: string, destination: string) => {
+      setSelectedDestination(prevState => ({ [id]: !prevState[id] }));
+      setDestinationForm(destination);
+    },
+    [],
+  );
 
-  const handlePlan = useCallback((id: number, plan: number) => {
+  const handlePlanPress = useCallback((id: number, plan: number) => {
     setSelectedPlan(prevState => ({ [id]: !prevState[id] }));
     setPlanForm(plan);
   }, []);
@@ -191,7 +198,7 @@ const Consult: React.FC = () => {
                       selected={Number(selectedOrigin[id]) || 0}
                     >
                       <CustomRectButton
-                        onPress={() => handleOrigin(id, origin)}
+                        onPress={() => handleOriginPress(id, origin)}
                         testID={`origin-button-${id}`}
                       >
                         <ButtonText selected={Number(selectedOrigin[id] || 0)}>
@@ -214,7 +221,7 @@ const Consult: React.FC = () => {
                       selected={Number(selectedDestination[id]) || 0}
                     >
                       <CustomRectButton
-                        onPress={() => handleDestination(id, destination)}
+                        onPress={() => handleDestinationPress(id, destination)}
                         testID={`destination-button-${id}`}
                       >
                         <ButtonText
@@ -229,7 +236,7 @@ const Consult: React.FC = () => {
               </DestinationContainer>
 
               <PlanContainer>
-                <PlanText>Informe su Plano FaleMais</PlanText>
+                <PlanText>Informe seu Plano FaleMais</PlanText>
 
                 <ButtonsList>
                   {plans.map((plan, index) => (
@@ -239,7 +246,7 @@ const Consult: React.FC = () => {
                       selected={Number(selectedPlan[index]) || 0}
                     >
                       <CustomRectButton
-                        onPress={() => handlePlan(index, plan)}
+                        onPress={() => handlePlanPress(index, plan)}
                         testID={`plan-button-${plan}`}
                       >
                         <ButtonText selected={Number(selectedPlan[index] || 0)}>
@@ -251,7 +258,20 @@ const Consult: React.FC = () => {
                 </ButtonsList>
               </PlanContainer>
 
-              <Input name="time" placeholder="Tempo em minutos ex: 30" />
+              <Input
+                name="time"
+                placeholder="Tempo em minutos ex: 30"
+                returnKeyLabel="send"
+                returnKeyType="send"
+                onSubmitEditing={() => formRef.current?.submitForm()}
+              />
+
+              <Button
+                loading={loading}
+                onPress={() => formRef.current?.submitForm()}
+              >
+                Consultar
+              </Button>
             </Form>
           </>
         )}

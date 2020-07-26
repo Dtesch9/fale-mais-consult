@@ -14,6 +14,8 @@ interface InputValueReference {
 }
 
 const Input: React.FC<InputProps> = ({ name, ...rest }) => {
+  const inputElementRef = useRef<any>(null);
+
   const { registerField, defaultValue = '', fieldName } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
@@ -35,6 +37,10 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
+      clearValue() {
+        inputValueRef.current.value = '';
+        inputElementRef.current.clear();
+      },
     });
   }, [fieldName, registerField]);
 
@@ -48,7 +54,9 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
       />
 
       <TextInput
+        ref={inputElementRef}
         keyboardAppearance="dark"
+        keyboardType="numeric"
         placeholderTextColor="#666"
         defaultValue={defaultValue}
         onFocus={handleInputFocused}
