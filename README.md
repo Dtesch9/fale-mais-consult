@@ -71,6 +71,8 @@ An application that provides a mock E-Commerce place using an incredible strengt
 1 Caso não queria utilizar um banco de dados, eu deixei pronto um backend secundário com outros patterns e outra estrutura que sem depender de um database.  
 1.2 Caso tenha optado pelo backend secundário, entre no diretório `secondBackend` posteriormente rode `yarn` para instalar as dependências e depois rode `yarn dev:server` para inicializar o backend.
 
+2. Para conferir os tests de ambos os backends, basta rodar o comando `yarn test`
+
 **Frontend**
 
 1. Entre na pasta `cd frontend` e depois rode `yarn dev` para inicializar o frontend (ATENÇÃO! - Deixe o backend rodando em uma outra aba)
