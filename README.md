@@ -7,7 +7,7 @@
 <br />
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/douglas-tesch-00b7a518b/">
+  <a href="https://www.loldesign.com.br/">
     <img alt="Badge" src="https://img.shields.io/badge/Developer-Douglas%20Tesch-orange">
   </a>
   
