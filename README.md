@@ -54,8 +54,11 @@ An application that provides a mock E-Commerce place using an incredible strengt
 
 **Mobile**
 
+✋🏻 ATENÇÃO: Necessário a utilização de um emulador Android como **Android Studio** ou **Genymotion**
+
 1. Volte uma pasta (Pensando que você está no diretório backend) `cd..` depois entre em `cd mobile`.
 2. Rode o comando `$ yarn` ou `$ npm install` para instalar as dependências
+3. Entre na pasta `src/services/api.ts` e coloque o IP da sua máquina na url, Caso esteja utilizando Android Studio, você pode também colocar o ip: `10.0.2.2` e para o Genymotion `10.0.3.3`
 
 ## Run 🔥 
 
@@ -84,9 +87,11 @@ visualização da cobertura dos tests. (Hint: se você entrar na pasta `coverage
 
 ## Usage Example
 
-**Mobile**
+## Mobile
+
 ![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-mobile.gif)
 
-**Web**
+## Web
+
 ![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-web.gif)
 
