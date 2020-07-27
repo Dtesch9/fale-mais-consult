@@ -42,7 +42,7 @@ An application that provides a mock E-Commerce place using an incredible strengt
 
 1. Clone esse  repositorio;
 2. Entre na pasta `cd loldesign-show-me-the-code/backend`;
-3. Utilizando docker **Recomendado** crie uma imagem do banco mongoDB com o comando `docker run --name mongobarber -p 27017:27017 -d -t mongo`.
+3. Utilizando docker **Recomendado** crie uma imagem do banco mongoDB com o comando `docker run --name mongodb -p 27017:27017 -d -t mongo`. e para subir o container utilize o comando `docker start mongodb`
 
 3.1 Rode o comando `$ yarn` ou `$ npm install` para instalar as dependências.
 
