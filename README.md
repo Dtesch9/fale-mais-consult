@@ -95,3 +95,5 @@ visualização da cobertura dos tests. (Hint: se você entrar na pasta `coverage
 
 ![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-web.gif)
 
+
+:link: [Linkedin](https://www.linkedin.com/in/douglas-tesch-00b7a518b/)
