@@ -89,6 +89,16 @@ visualização da cobertura dos tests. (Hint: se você entrar na pasta `coverage
 
 ## Usage Example
 
+Mock DDDs para você verificar os preços oferecidos.
+
+Origem Destino $/min
+  011 | 016 | 1.90
+  016 | 011 | 2.90
+  011 | 017 | 1.70
+  017 | 011 | 2.70
+  011 | 018 | 0.90
+  018 | 011 | 1.90
+
 ## Mobile
 
 ![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-mobile.gif)
