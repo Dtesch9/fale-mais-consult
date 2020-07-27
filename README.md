@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Dtesch9/GoMarketplace">
-    <img src="https://github.com/Dtesch9/GoMarketplace/blob/master/assets/logo.png" alt="Logo">
+    <img src="https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/logo-fale.png" alt="Logo">
   </a>
 </p>
 <br />
@@ -83,5 +83,10 @@ visualização da cobertura dos tests. (Hint: se você entrar na pasta `coverage
 
 
 ## Usage Example
-![Usage](https://github.com/Dtesch9/GoMarketplace/blob/master/assets/gomarket-usage.gif)
+
+**Mobile**
+![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-mobile.gif)
+
+**Web**
+![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-web.gif)
 
