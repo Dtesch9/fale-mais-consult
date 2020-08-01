@@ -24,9 +24,6 @@
 - [Run](#run-)
 - [Usage Example](#usage-example)
   
-## About the Project
-
-An application that provides a mock E-Commerce place using an incredible strength of context API.
 
 :warning: **ANDROID ONLY** :warning:
 
