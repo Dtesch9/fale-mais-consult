@@ -31,7 +31,7 @@
 
 ## Aboute the project 🔥
 
-Aplicação para consulta de planos DD da empresa FaleMais.
+Aplicação para consulta de planos DDD da empresa FaleMais.
 
 ## Install 🔥
 
