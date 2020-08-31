@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://www.linkedin.com/in/douglas-tesch-00b7a518b/">
-    <img alt="Badge" src="https://img.shields.io/badge/Desafio-LolDesign-%237159c1">
+    <img alt="Badge" src="https://img.shields.io/badge/Developer-Douglas Tesch-%994400">
   </a>
 </p>
 
@@ -28,6 +28,10 @@
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/pt-BR/docs/install)
 - :iphone: Android emulator — [Guid to setup environment](https://docs.rocketseat.dev/ambiente-react-native/android/emulador)
+
+## Aboute the project 🔥
+
+Aplicação para consulta de planos DD da empresa FaleMais.
 
 ## Install 🔥
 
